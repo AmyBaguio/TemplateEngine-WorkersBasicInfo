@@ -55,5 +55,5 @@ As a programmer, the challenge is to build a Node CLI that takes in information 
 
 ## Workers Basic Info Generator Screenshot
 <br>
-![App Screenshot](/Assets/MyTeam.png)
-=======
+[App Screenshot](/Assets/MyTeam.png)
+
