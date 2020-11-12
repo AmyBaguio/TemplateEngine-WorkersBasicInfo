@@ -1,10 +1,17 @@
-
+const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+
+const OUTPUT_DIR = path.resolve(__dirname, "output");
+const outputPath = path.join(OUTPUT_DIR, "team.html")
+
+const render = require("./lib/htmlRenderer");
+
+let employee = []
 
 function ValidateEmail(input) {
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(input)) {
@@ -13,18 +20,9 @@ function ValidateEmail(input) {
     return "Please enter a valid email address!";
   }
 }
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
 
-function start() {
+
+function getEmployees() {
   console.log("Please build your Team.");
 
   inquirer
@@ -52,8 +50,8 @@ function start() {
       },
     ])
     .then((data) => {
-      let teamHTML = "";
-      const manager = new Manager(
+
+      let manager = new Manager(
         data.managerName,
         data.managerId,
         data.managerEmail,
@@ -61,8 +59,8 @@ function start() {
       );
       console.log(`${data.managerName} has been added!`);
       teamMember = fs.readFileSync("templates/manager.html");
-      teamHTML = teamHTML + "\n" + eval("`" + teamMember + "`");
-      //teamHTML.push(manager);
+      
+      employee.push(manager);
       addAnother();
     });
 }
@@ -95,8 +93,7 @@ function addEngineer() {
       },
     ])
     .then((data) => {
-      let teamHTML = "";
-      const engineer = new Engineer(
+      let engineer = new Engineer(
         data.engineerName,
         data.engineerId,
         data.engineerEmail,
@@ -104,8 +101,10 @@ function addEngineer() {
       );
       console.log(`${data.engineerName} has been added!`);
       teamMember = fs.readFileSync("templates/engineer.html");
-      teamHTML = teamHTML + "\n" + eval("`" + teamMember + "`");
+     
+      employee.push(engineer);
       addAnother();
+
     });
 }
 
@@ -137,8 +136,7 @@ function addIntern() {
       },
     ])
     .then((data) => {
-      let teamHTML = "";
-      const intern = new Intern(
+      let intern = new Intern(
         data.internName,
         data.internId,
         data.internEmail,
@@ -146,8 +144,8 @@ function addIntern() {
       );
       console.log(`${data.internName} has been added!`);
       teamMember = fs.readFileSync("templates/intern.html");
-      teamHTML = teamHTML + "\n" + eval("`" + teamMember + "`");
-      // teamHTML.push(intern);
+      
+      employee.push(intern);
       addAnother();
     });
 }
@@ -168,10 +166,9 @@ function addAnother() {
       } else if (data.choice === "Add Intern") {
         addIntern();
       } else {
-        const mainHTML = fs.readFileSync("templates/main.html");
-        teamHTML = eval("`" + mainHTML + "`");
 
-        fs.writeFile("output/team.html", teamHTML, function (err) {
+        let teamHTML = render(employee);
+        fs.writeFile(outputPath, teamHTML, "utf8", function (err) {
           if (err) {
             return console.log(err);
           }
@@ -183,26 +180,6 @@ function addAnother() {
     });
 }
 
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
- /// ------RENDER CODE goes Here --------///
- const render = require("./lib/htmlRenderer");
- 
 
-
-
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-// -------CODE GOES HERE ------///
-//let teamHTML = "";
-const OUTPUT_DIR = path.resolve(__dirname, "output");
-const outputPath = path.join(OUTPUT_DIR, "team.html")
-
-
-start();
+getEmployees();
 
