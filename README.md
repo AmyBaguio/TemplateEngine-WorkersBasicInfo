@@ -53,7 +53,7 @@ As a programmer, the challenge is to build a Node CLI that takes in information 
 
 <br>
 
-## Workers Basic Info Generator Screenshot
-<br>
-[App Screenshot](/Assets/MyTeam.png)
+## Template Engine Screenshot
 
+![App Screenshot](./Assets/MyTeam.png)
+=======
