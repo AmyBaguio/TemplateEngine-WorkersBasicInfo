@@ -17,19 +17,19 @@ As a programmer, the challenge is to build a Node CLI that takes in information 
 * A command line that accepts user input
 * A Team Profile Generator with the following contents:
   
-  1. MANAGER:
+  A. MANAGER:
   - Designation
   - Name
   - ID Number
   - Office Number
 
-  2. ENGINEER:
+  B. ENGINEER:
   - Name
   - ID Number
   - Email
   - Github UserName
 
-  3. INTERN:
+  C. INTERN:
   - Name
   - ID Number
   - Email Address
