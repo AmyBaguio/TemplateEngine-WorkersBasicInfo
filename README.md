@@ -47,7 +47,7 @@ As a programmer, the challenge is to build a Node CLI that takes in information 
 
 ## To view the walkthrough video, please click on the link below
 
-[Template Engine Video](https://drive.google.com/file/d/1Y-cjkZ7O7ZnzO2D275xkmgRN3IDNQrSU/view)
+[Template Engine Video](https://drive.google.com/file/d/1saK9VSD55evSBLN8R1F3GDpzNbbl4V0K/view)
 
 
 
@@ -55,5 +55,5 @@ As a programmer, the challenge is to build a Node CLI that takes in information 
 
 ## Workers Basic Info Generator Screenshot
 <br>
-![App Screenshot](ReadMe.png)
+![App Screenshot](/Assets/MyTeam.png)
 =======
