@@ -1,4 +1,4 @@
-# TemplateEngine-WorkersBasicInfo
+# TemplateEngine - WorkersBasicInfo
 
 
 ## User Story
@@ -35,7 +35,7 @@ As a programmer, the challenge is to build a Node CLI that takes in information 
   - Email Address
   - School
 
-## Technologies used to create Generator
+## Technologies used to create Template Engine
 
 * Javascript
 * Node.js
